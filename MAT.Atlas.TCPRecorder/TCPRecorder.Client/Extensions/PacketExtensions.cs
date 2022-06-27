@@ -157,45 +157,45 @@ namespace TCPRecorder.Client.Extensions
         {
             switch (packetFieldType)
             {
-            case PacketFieldType.Char:
-            case PacketFieldType.SignedChar:
-            case PacketFieldType.Int8:
-            case PacketFieldType.SByte:
-                return typeof(sbyte);
-            case PacketFieldType.Packed:
-            case PacketFieldType.UnsignedChar:
-            case PacketFieldType.UInt8:
-            case PacketFieldType.Byte:
-                return typeof(byte);
-            case PacketFieldType.Short:
-            case PacketFieldType.SignedShort:
-            case PacketFieldType.Int16:
-                return typeof(short);
-            case PacketFieldType.UShort:
-            case PacketFieldType.UnsignedShort:
-            case PacketFieldType.UInt16:
-            case PacketFieldType.Word:
-                return typeof(ushort);
-            case PacketFieldType.Int:
-            case PacketFieldType.SignedInt:
-            case PacketFieldType.Int32:
-            case PacketFieldType.LLong:
-                return typeof(int);
-            case PacketFieldType.UInt:
-            case PacketFieldType.UnsignedInt:
-            case PacketFieldType.UInt32:
-            case PacketFieldType.DWord:
-                return typeof(uint);
-            case PacketFieldType.Float:
-            case PacketFieldType.Single:
-            case PacketFieldType.TripleFloat:
-                return typeof(float);
-            case PacketFieldType.Double:
-                return typeof(double);
-            case PacketFieldType.String:
-                return typeof(string);
-            default:
-                throw new InvalidOperationException("Unknown Type");
+                case PacketFieldType.Char:
+                case PacketFieldType.SignedChar:
+                case PacketFieldType.Int8:
+                case PacketFieldType.SByte:
+                    return typeof(sbyte);
+                case PacketFieldType.Packed:
+                case PacketFieldType.UnsignedChar:
+                case PacketFieldType.UInt8:
+                case PacketFieldType.Byte:
+                    return typeof(byte);
+                case PacketFieldType.Short:
+                case PacketFieldType.SignedShort:
+                case PacketFieldType.Int16:
+                    return typeof(short);
+                case PacketFieldType.UShort:
+                case PacketFieldType.UnsignedShort:
+                case PacketFieldType.UInt16:
+                case PacketFieldType.Word:
+                    return typeof(ushort);
+                case PacketFieldType.Int:
+                case PacketFieldType.SignedInt:
+                case PacketFieldType.Int32:
+                case PacketFieldType.LLong:
+                    return typeof(int);
+                case PacketFieldType.UInt:
+                case PacketFieldType.UnsignedInt:
+                case PacketFieldType.UInt32:
+                case PacketFieldType.DWord:
+                    return typeof(uint);
+                case PacketFieldType.Float:
+                case PacketFieldType.Single:
+                case PacketFieldType.TripleFloat:
+                    return typeof(float);
+                case PacketFieldType.Double:
+                    return typeof(double);
+                case PacketFieldType.String:
+                    return typeof(string);
+                default:
+                    throw new InvalidOperationException("Unknown Type");
             }
         }
     }

@@ -15,9 +15,9 @@ namespace TCPRecorder.Client.Parameters
             string format = null)
             : base(name, description)
         {
-            MinMax = minMax;
-            Units = units;
-            Format = format;
+            this.MinMax = minMax;
+            this.Units = units;
+            this.Format = format;
         }
 
         public string Format { get; }

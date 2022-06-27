@@ -1,4 +1,7 @@
-﻿using System;
+﻿// <copyright file="Program.cs" company="McLaren Applied Ltd.">
+// Copyright (c) McLaren Applied Ltd.</copyright>
+
+using System;
 using System.Net;
 using System.Threading;
 using System.Threading.Tasks;
@@ -17,21 +20,6 @@ namespace Sample
     class Program
     {
         private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
-
-        static void Main()
-        {
-            using var cts = new CancellationTokenSource();
-
-            Do(cts);
-
-            Console.WriteLine("Press any key to exit.");
-            Console.ReadKey(true);
-
-            if (!cts.IsCancellationRequested)
-            {
-                cts.Cancel();
-            }
-        }
 
         private static async void Do(CancellationTokenSource cts)
         {
@@ -156,17 +144,32 @@ namespace Sample
             params PacketParameter[] packetParameters)
         {
             if (!PacketConfiguration.GenerateConfiguration(
-                ref configurationIdentifier,
-                configurationVersion,
-                applicationGroupName,
-                packetParameters,
-                out var packetSize,
-                frequencyInHz))
+                    ref configurationIdentifier,
+                    configurationVersion,
+                    applicationGroupName,
+                    packetParameters,
+                    out var packetSize,
+                    frequencyInHz))
             {
                 throw new InvalidOperationException("Generate Configuration failed!");
             }
 
             return packetSize;
+        }
+
+        static void Main()
+        {
+            using var cts = new CancellationTokenSource();
+
+            Do(cts);
+
+            Console.WriteLine("Press any key to exit.");
+            Console.ReadKey(true);
+
+            if (!cts.IsCancellationRequested)
+            {
+                cts.Cancel();
+            }
         }
     }
 }

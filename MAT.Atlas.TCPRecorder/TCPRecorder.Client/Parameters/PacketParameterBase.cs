@@ -34,22 +34,22 @@ namespace TCPRecorder.Client.Parameters
             int? packetId,
             int arrayIndex)
         {
-            Name = name;
-            Description = description;
-            ApplicationGroup = applicationGroup;
-            GroupPath = groupPath;
-            PacketType = packetType;
-            ByteCount = (int)PacketType.ByteCount();
-            Minimum = displayRange?.minimum ?? PacketType.MinValue();
-            Maximum = displayRange?.maximum ?? PacketType.MaxValue();
-            Units = units ?? string.Empty;
-            Format = format;
-            StartBit = bitField?.index ?? 0;
-            NumBits = bitField?.count ?? PacketType.BitCount();
-            GetValue = getValue;
-            ConvertValue = convertValue;
-            PacketId = packetId;
-            ArrayIndex = arrayIndex;
+            this.Name = name;
+            this.Description = description;
+            this.ApplicationGroup = applicationGroup;
+            this.GroupPath = groupPath;
+            this.PacketType = packetType;
+            this.ByteCount = (int)this.PacketType.ByteCount();
+            this.Minimum = displayRange?.minimum ?? this.PacketType.MinValue();
+            this.Maximum = displayRange?.maximum ?? this.PacketType.MaxValue();
+            this.Units = units ?? string.Empty;
+            this.Format = format;
+            this.StartBit = bitField?.index ?? 0;
+            this.NumBits = bitField?.count ?? this.PacketType.BitCount();
+            this.GetValue = getValue;
+            this.ConvertValue = convertValue;
+            this.PacketId = packetId;
+            this.ArrayIndex = arrayIndex;
         }
 
         protected PacketParameterBase(
@@ -122,69 +122,69 @@ namespace TCPRecorder.Client.Parameters
 
         public IPacketParameter<TPacketData> SetApplicationGroup(string applicationGroup)
         {
-            ApplicationGroup = applicationGroup;
+            this.ApplicationGroup = applicationGroup;
             return this;
         }
 
         public IPacketParameter<TPacketData> SetBitField(uint index, uint count)
         {
-            StartBit = index;
-            NumBits = count;
+            this.StartBit = index;
+            this.NumBits = count;
             return this;
         }
 
         public IPacketParameter<TPacketData> SetCalculated(Func<IPacketParameter<TPacketData>, TPacketData, object> getValue)
         {
-            GetValue = getValue;
+            this.GetValue = getValue;
             return this;
         }
 
         public IPacketParameter<TPacketData> SetConverter(Func<IPacketParameter<TPacketData>, TPacketData, object, object> convertValue)
         {
-            ConvertValue = convertValue;
+            this.ConvertValue = convertValue;
             return this;
         }
 
         public IPacketParameter<TPacketData> SetFormat(string format)
         {
-            Format = format;
+            this.Format = format;
             return this;
         }
 
         public IPacketParameter<TPacketData> SetGroupPath(IReadOnlyCollection<string> groupPath)
         {
-            GroupPath = groupPath;
+            this.GroupPath = groupPath;
             return this;
         }
 
         public IPacketParameter<TPacketData> SetMinMax(double minimum, double maximum)
         {
-            Minimum = Math.Min(minimum, maximum);
-            Maximum = Math.Max(minimum, maximum);
+            this.Minimum = Math.Min(minimum, maximum);
+            this.Maximum = Math.Max(minimum, maximum);
             return this;
         }
 
         public IPacketParameter<TPacketData> SetPacketId(int? id)
         {
-            PacketId = id;
+            this.PacketId = id;
             return this;
         }
 
         public IPacketParameter<TPacketData> SetSourceByteOffset(int offset)
         {
-            SourceByteOffset = offset;
+            this.SourceByteOffset = offset;
             return this;
         }
 
         public IPacketParameter<TPacketData> SetTargetByteOffset(int offset)
         {
-            TargetByteOffset = offset;
+            this.TargetByteOffset = offset;
             return this;
         }
 
         public IPacketParameter<TPacketData> SetUnits(string units)
         {
-            Units = units;
+            this.Units = units;
             return this;
         }
     }

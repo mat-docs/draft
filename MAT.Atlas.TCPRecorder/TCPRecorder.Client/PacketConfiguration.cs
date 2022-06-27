@@ -123,14 +123,17 @@ namespace TCPRecorder.Client
             var sessionConfiguration = new SessionConfiguration(
                 new Configuration(configurationIdentifier, configurationVersion.ToString()),
                 groups,
-                new Dictionary<string, IConversion> { [conversion.Name] = conversion });
+                new Dictionary<string, IConversion>
+                {
+                    [conversion.Name] = conversion
+                });
 
             var configurationFileFolderPath = ConfigurationFileOperations.GetConfigurationFileFolderPath();
             if (!ConfigurationFileOperations.SaveConfiguration(
-                sessionConfiguration,
-                configurationFileFolderPath,
-                ref configurationIdentifier,
-                out var configurationFilePath))
+                    sessionConfiguration,
+                    configurationFileFolderPath,
+                    ref configurationIdentifier,
+                    out var configurationFilePath))
             {
                 NLogLogger.Error("Writing configuration file failed!");
                 return false;

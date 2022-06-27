@@ -3,6 +3,7 @@
 
 using System.Collections.Generic;
 using System.Linq;
+
 using TCPRecorder.Client.Extensions;
 
 namespace TCPRecorder.Client.ConfigurationFile

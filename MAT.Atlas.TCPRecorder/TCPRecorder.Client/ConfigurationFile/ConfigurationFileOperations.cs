@@ -1,4 +1,4 @@
-﻿// <copyright file="Configuration.cs" company="McLaren Applied Ltd.">
+﻿// <copyright file="ConfigurationFileOperations.cs" company="McLaren Applied Ltd.">
 // Copyright (c) McLaren Applied Ltd.</copyright>
 
 using System;
@@ -11,7 +11,9 @@ using System.Xml.XPath;
 using Newtonsoft.Json;
 
 using NLog;
+
 using TCPRecorder.Client.Extensions;
+
 using TcpRange = TCPRecorder.Client.ConfigurationFile.Range;
 
 namespace TCPRecorder.Client.ConfigurationFile
@@ -23,9 +25,15 @@ namespace TCPRecorder.Client.ConfigurationFile
         private const string ConfigRecordersFolderXPath =
             @"configuration/applicationConfiguration/categories/category[@name = 'Recorders']/subCategories/subCategory[@name = 'Folders']/settings/setting[@name = 'Folders']";
         private static readonly ByteOrderType ByteOrder = BitConverter.IsLittleEndian ? ByteOrderType.LittleEndian : ByteOrderType.BigEndian;
-        private static readonly JsonConverter[] Converters = { new ConversionConverter() };
+        private static readonly JsonConverter[] Converters =
+        {
+            new ConversionConverter()
+        };
         private static readonly Logger NLogLogger = LogManager.GetCurrentClassLogger();
-        private static readonly JsonSerializerSettings Settings = new JsonSerializerSettings { Converters = Converters };
+        private static readonly JsonSerializerSettings Settings = new JsonSerializerSettings
+        {
+            Converters = Converters
+        };
 
         public static Parameter CreateParameter(
             string name,

@@ -1,4 +1,7 @@
-﻿using TCPRecorder.Client.Packet;
+﻿// <copyright file="ApplicationGroup.cs" company="McLaren Applied Ltd.">
+// Copyright (c) McLaren Applied Ltd.</copyright>
+
+using TCPRecorder.Client.Packet;
 
 namespace TCPRecorder.Client.Parameters
 {

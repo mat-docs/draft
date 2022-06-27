@@ -11,17 +11,17 @@ namespace TCPRecorder.Client.Parameters
         {
             if (string.IsNullOrWhiteSpace(name))
             {
-                throw new ArgumentNullException(nameof(Name), "Field name cannot be empty");
+                throw new ArgumentNullException(nameof(this.Name), "Field name cannot be empty");
             }
 
-            Name = name;
-            Description = description ?? name;
+            this.Name = name;
+            this.Description = description ?? name;
         }
 
         public string Description { get; }
 
         public string Name { get; }
 
-        public override string ToString() => Name;
+        public override string ToString() => this.Name;
     }
 }
