@@ -1,13 +1,14 @@
-﻿// <copyright file="PacketParameterBase.cs" company="Steven Morgan.">
-// Copyright (c) Steven Morgan.</copyright>
+﻿// <copyright file="PacketParameterBase.cs" company="McLaren Applied Ltd.">
+// Copyright (c) McLaren Applied Ltd.</copyright>
 
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+
 using TCPRecorder.Client.Extensions;
 using TCPRecorder.Client.Packet;
 
-namespace TCPRecorder.Client
+namespace TCPRecorder.Client.Parameters
 {
     [DebuggerDisplay(
         nameof(Name) + " = {" + nameof(Name) + "}, " +
@@ -33,22 +34,22 @@ namespace TCPRecorder.Client
             int? packetId,
             int arrayIndex)
         {
-            this.Name = name;
-            this.Description = description;
-            this.ApplicationGroup = applicationGroup;
-            this.GroupPath = groupPath;
-            this.PacketType = packetType;
-            this.ByteCount = (int)this.PacketType.ByteCount();
-            this.Minimum = displayRange?.minimum ?? this.PacketType.MinValue();
-            this.Maximum = displayRange?.maximum ?? this.PacketType.MaxValue();
-            this.Units = units ?? string.Empty;
-            this.Format = format;
-            this.StartBit = bitField?.index ?? 0;
-            this.NumBits = bitField?.count ?? this.PacketType.BitCount();
-            this.GetValue = getValue;
-            this.ConvertValue = convertValue;
-            this.PacketId = packetId;
-            this.ArrayIndex = arrayIndex;
+            Name = name;
+            Description = description;
+            ApplicationGroup = applicationGroup;
+            GroupPath = groupPath;
+            PacketType = packetType;
+            ByteCount = (int)PacketType.ByteCount();
+            Minimum = displayRange?.minimum ?? PacketType.MinValue();
+            Maximum = displayRange?.maximum ?? PacketType.MaxValue();
+            Units = units ?? string.Empty;
+            Format = format;
+            StartBit = bitField?.index ?? 0;
+            NumBits = bitField?.count ?? PacketType.BitCount();
+            GetValue = getValue;
+            ConvertValue = convertValue;
+            PacketId = packetId;
+            ArrayIndex = arrayIndex;
         }
 
         protected PacketParameterBase(
@@ -121,69 +122,69 @@ namespace TCPRecorder.Client
 
         public IPacketParameter<TPacketData> SetApplicationGroup(string applicationGroup)
         {
-            this.ApplicationGroup = applicationGroup;
+            ApplicationGroup = applicationGroup;
             return this;
         }
 
         public IPacketParameter<TPacketData> SetBitField(uint index, uint count)
         {
-            this.StartBit = index;
-            this.NumBits = count;
+            StartBit = index;
+            NumBits = count;
             return this;
         }
 
         public IPacketParameter<TPacketData> SetCalculated(Func<IPacketParameter<TPacketData>, TPacketData, object> getValue)
         {
-            this.GetValue = getValue;
+            GetValue = getValue;
             return this;
         }
 
         public IPacketParameter<TPacketData> SetConverter(Func<IPacketParameter<TPacketData>, TPacketData, object, object> convertValue)
         {
-            this.ConvertValue = convertValue;
+            ConvertValue = convertValue;
             return this;
         }
 
         public IPacketParameter<TPacketData> SetFormat(string format)
         {
-            this.Format = format;
+            Format = format;
             return this;
         }
 
         public IPacketParameter<TPacketData> SetGroupPath(IReadOnlyCollection<string> groupPath)
         {
-            this.GroupPath = groupPath;
+            GroupPath = groupPath;
             return this;
         }
 
         public IPacketParameter<TPacketData> SetMinMax(double minimum, double maximum)
         {
-            this.Minimum = Math.Min(minimum, maximum);
-            this.Maximum = Math.Max(minimum, maximum);
+            Minimum = Math.Min(minimum, maximum);
+            Maximum = Math.Max(minimum, maximum);
             return this;
         }
 
         public IPacketParameter<TPacketData> SetPacketId(int? id)
         {
-            this.PacketId = id;
+            PacketId = id;
             return this;
         }
 
         public IPacketParameter<TPacketData> SetSourceByteOffset(int offset)
         {
-            this.SourceByteOffset = offset;
+            SourceByteOffset = offset;
             return this;
         }
 
         public IPacketParameter<TPacketData> SetTargetByteOffset(int offset)
         {
-            this.TargetByteOffset = offset;
+            TargetByteOffset = offset;
             return this;
         }
 
         public IPacketParameter<TPacketData> SetUnits(string units)
         {
-            this.Units = units;
+            Units = units;
             return this;
         }
     }

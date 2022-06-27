@@ -1,9 +1,6 @@
-﻿// <copyright file="ApplicationGroup.cs" company="Steven Morgan.">
-// Copyright (c) Steven Morgan.</copyright>
+﻿using TCPRecorder.Client.Packet;
 
-using TCPRecorder.Client.Packet;
-
-namespace TCPRecorder.Client
+namespace TCPRecorder.Client.Parameters
 {
     public sealed class ApplicationGroup : FieldDetails, IApplicationGroup
     {

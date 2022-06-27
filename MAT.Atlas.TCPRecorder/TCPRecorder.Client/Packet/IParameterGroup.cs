@@ -1,5 +1,5 @@
-﻿// <copyright file="IParameterGroup.cs" company="Steven Morgan.">
-// Copyright (c) Steven Morgan.</copyright>
+﻿// <copyright file="IParameterGroup.cs" company="McLaren Applied Ltd.">
+// Copyright (c) McLaren Applied Ltd.</copyright>
 
 namespace TCPRecorder.Client.Packet
 {

@@ -1,9 +1,9 @@
-﻿// <copyright file="ParameterGroup.cs" company="Steven Morgan.">
-// Copyright (c) Steven Morgan.</copyright>
+﻿// <copyright file="ParameterGroup.cs" company="McLaren Applied Ltd.">
+// Copyright (c) McLaren Applied Ltd.</copyright>
 
 using TCPRecorder.Client.Packet;
 
-namespace TCPRecorder.Client
+namespace TCPRecorder.Client.Parameters
 {
     public sealed class ParameterGroup : FieldDetails, IParameterGroup
     {

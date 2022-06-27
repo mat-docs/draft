@@ -1,10 +1,9 @@
-﻿// <copyright file="PacketExtensions.cs" company="Steven Morgan.">
-// Copyright (c) Steven Morgan.</copyright>
+﻿// <copyright file="PacketExtensions.cs" company="McLaren Applied Ltd.">
+// Copyright (c) McLaren Applied Ltd.</copyright>
 
 using System;
-using System.Linq;
 using System.Runtime.InteropServices;
-using System.Text;
+
 using TCPRecorder.Client.Packet;
 
 namespace TCPRecorder.Client.Extensions
@@ -18,100 +17,6 @@ namespace TCPRecorder.Client.Extensions
             var type = packetFieldType.ToType();
             var byteCount = (uint)(packetFieldType == PacketFieldType.String ? sizeof(byte) : Marshal.SizeOf(type));
             return byteCount * size;
-        }
-
-        public static int GetPacketSize(params Type[] types)
-        {
-            return types.Sum(Marshal.SizeOf);
-        }
-
-        public static object GetString(this byte[] buffer, int offset, int size) => Encoding.UTF8.GetString(buffer, offset, size);
-
-        public static T GetValue<T>(this byte[] buffer, int offset) => (T)buffer.GetValue(typeof(T), offset);
-
-        public static object GetValue(this byte[] buffer, Type type, int offset)
-        {
-            var byteCount = Marshal.SizeOf(type);
-
-            if (offset < 0 ||
-                offset >= buffer.Length ||
-                offset + byteCount > buffer.Length)
-            {
-                throw new ArgumentOutOfRangeException(
-                    nameof(offset),
-                    $"{offset}+{byteCount} is outside of {buffer.Length}");
-            }
-
-            try
-            {
-                var span = buffer.AsSpan(offset, byteCount);
-
-                if (type == typeof(bool))
-                {
-                    return BitConverter.ToBoolean(span);
-                }
-
-                if (type == typeof(char))
-                {
-                    return BitConverter.ToChar(span);
-                }
-
-                if (type == typeof(byte))
-                {
-                    return buffer[offset];
-                }
-
-                if (type == typeof(sbyte))
-                {
-                    return (sbyte)buffer[offset];
-                }
-
-                if (type == typeof(ushort))
-                {
-                    return BitConverter.ToUInt16(span);
-                }
-
-                if (type == typeof(short))
-                {
-                    return BitConverter.ToInt16(span);
-                }
-
-                if (type == typeof(uint))
-                {
-                    return BitConverter.ToUInt32(span);
-                }
-
-                if (type == typeof(int))
-                {
-                    return BitConverter.ToInt32(span);
-                }
-
-                if (type == typeof(ulong))
-                {
-                    return BitConverter.ToUInt64(span);
-                }
-
-                if (type == typeof(long))
-                {
-                    return BitConverter.ToInt64(span);
-                }
-
-                if (type == typeof(float))
-                {
-                    return BitConverter.ToSingle(span);
-                }
-
-                if (type == typeof(double))
-                {
-                    return BitConverter.ToDouble(span);
-                }
-            }
-            catch
-            {
-                return default;
-            }
-
-            throw new InvalidOperationException("Unknown type");
         }
 
         public static double MaxValue(this PacketFieldType packetFieldType) => packetFieldType.ToType().MaxValue();
@@ -246,79 +151,6 @@ namespace TCPRecorder.Client.Extensions
             }
 
             throw new InvalidOperationException("Unknown Type");
-        }
-
-        public static void SetValue<T>(this byte[] buffer, int offset, T value)
-        {
-            var byteCount = Marshal.SizeOf<T>();
-
-            if (offset < 0 ||
-                offset >= buffer.Length ||
-                offset + byteCount > buffer.Length)
-            {
-                throw new ArgumentOutOfRangeException(
-                    nameof(offset),
-                    $"{offset}+{byteCount} is outside of {buffer.Length}");
-            }
-
-            var type = typeof(T);
-
-            byte[] bytes;
-            if (type == typeof(bool))
-            {
-                bytes = BitConverter.GetBytes((bool)(object)value);
-            }
-            else if (type == typeof(char))
-            {
-                bytes = BitConverter.GetBytes((char)(object)value);
-            }
-            else if (type == typeof(byte))
-            {
-                bytes = ArrayExtensions.CreateArray((byte)(object)value);
-            }
-            else if (type == typeof(sbyte))
-            {
-                bytes = ArrayExtensions.CreateArray((byte)(sbyte)(object)value);
-            }
-            else if (type == typeof(ushort))
-            {
-                bytes = BitConverter.GetBytes((ushort)(object)value);
-            }
-            else if (type == typeof(short))
-            {
-                bytes = BitConverter.GetBytes((short)(object)value);
-            }
-            else if (type == typeof(uint))
-            {
-                bytes = BitConverter.GetBytes((uint)(object)value);
-            }
-            else if (type == typeof(int))
-            {
-                bytes = BitConverter.GetBytes((int)(object)value);
-            }
-            else if (type == typeof(ulong))
-            {
-                bytes = BitConverter.GetBytes((ulong)(object)value);
-            }
-            else if (type == typeof(long))
-            {
-                bytes = BitConverter.GetBytes((long)(object)value);
-            }
-            else if (type == typeof(float))
-            {
-                bytes = BitConverter.GetBytes((float)(object)value);
-            }
-            else if (type == typeof(double))
-            {
-                bytes = BitConverter.GetBytes((double)(object)value);
-            }
-            else
-            {
-                throw new InvalidOperationException("Unknown type");
-            }
-
-            var span = buffer.AsSpan(offset, byteCount);
-            bytes.AsSpan().CopyTo(span);
         }
 
         public static Type ToType(this PacketFieldType packetFieldType)

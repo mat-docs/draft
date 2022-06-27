@@ -1,9 +1,10 @@
-﻿// <copyright file="PacketField.cs" company="Steven Morgan.">
-// Copyright (c) Steven Morgan.</copyright>
+﻿// <copyright file="PacketField.cs" company="McLaren Applied Ltd.">
+// Copyright (c) McLaren Applied Ltd.</copyright>
 
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+
 using TCPRecorder.Client.Extensions;
 
 namespace TCPRecorder.Client.Packet

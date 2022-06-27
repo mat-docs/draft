@@ -1,8 +1,9 @@
-﻿// <copyright file="PacketConfiguration.cs" company="Steven Morgan.">
-// Copyright (c) Steven Morgan.</copyright>
+﻿// <copyright file="PacketConfiguration.cs" company="McLaren Applied Ltd.">
+// Copyright (c) McLaren Applied Ltd.</copyright>
 
 using System.Collections.Generic;
 using System.Linq;
+
 using NLog;
 
 using TCPRecorder.Client.ConfigurationFile;

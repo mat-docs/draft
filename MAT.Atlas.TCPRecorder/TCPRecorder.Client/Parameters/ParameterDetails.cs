@@ -1,9 +1,9 @@
-﻿// <copyright file="ParameterDetails.cs" company="Steven Morgan.">
-// Copyright (c) Steven Morgan.</copyright>
+﻿// <copyright file="ParameterDetails.cs" company="McLaren Applied Ltd.">
+// Copyright (c) McLaren Applied Ltd.</copyright>
 
 using TCPRecorder.Client.Packet;
 
-namespace TCPRecorder.Client
+namespace TCPRecorder.Client.Parameters
 {
     public sealed class ParameterDetails : FieldDetails, IParameterDetails
     {
@@ -15,9 +15,9 @@ namespace TCPRecorder.Client
             string format = null)
             : base(name, description)
         {
-            this.MinMax = minMax;
-            this.Units = units;
-            this.Format = format;
+            MinMax = minMax;
+            Units = units;
+            Format = format;
         }
 
         public string Format { get; }
