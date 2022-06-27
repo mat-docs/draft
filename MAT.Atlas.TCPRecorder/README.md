@@ -18,28 +18,27 @@ Client library used to connect, configure and send lap/parameter data to ATLAS T
 
 Used to create the configuration file needed by ATLAS to interpret the data packet into parameter values.
 
-Pass the following to PacketConfiguration.GenerateConfiguration:
+Pass the following to PacketConfiguration.GenerateConfiguration():
 - Configuration Identifier and Version
-    - Note: whenever the configuration is changed, the version number must be increased.
+    - Note: whenever the parameters are changed, the version number must be increased
 - Application group name
     - i.e. parameters will be identified by ParameterName:ApplicationName
+    - Parameters may be further organized into parameter groups as appropriate
 - Frequency of the data in Hertz
-- List of parameters
+- List of parameter descriptions
 
-The result of calling PacketConfiguration.GenerateConfiguration:
-- A configuration JSON file
-- A modified configuration identified
-    - This must be sent to ATLAS
-- The expected data packet size is returned
+The result of calling PacketConfiguration.GenerateConfiguration():
+- A configuration JSON file stored in a location known to ATLAS (specified in Tools->Options->Recorders->Folder).
+- A modified configuration identifier
+    - It is this that must be sent to ATLAS
+- The expected data packet size
     - Useful to allocate a byte buffer for the data packet
-
-The configuration file must be stored in a location known to ATLAS (specified in Tools->Options->Recorders->Folder).
 
 ### Client class
 
 Used to interact with the TCP Listener Recorder:
-- Connect to ATLAS with a TCP Listener Recorder instance configured on a specific ip address and port
-    - The ip address is generally always 'local host' (127.0.0.1)
+- Connect to ATLAS with a TCP Listener Recorder instance configured with a specific TCP/IP address and port
+    - The TCP/IP address is generally always 'local host' (127.0.0.1)
     - Call Dispose() (or via a 'using' statement) to close the connection
 - Send the configuration identifier (returned from PacketConfiguration.GenerateConfiguration)
     - Send this first and once
@@ -50,13 +49,13 @@ Used to interact with the TCP Listener Recorder:
 
 ## Sample project
 
-Demonstrates connection, setup of parameter configuration, sending lap/parameter data.
+Demonstrates use of the client library by sending live test data to ATLAS.
 
 Ensure the configuration folder is set appropriately:
 
 ![Options](./images/options.jpg)
 
-Then configure a TCP Listener Recorder instance in ATLAS (local machine with port number 4567 for the sample):
+Configure a TCP Listener Recorder instance in ATLAS (local machine with port number 4567 for the sample):
 
 ![Options](./images/recorder-config.jpg)
 
