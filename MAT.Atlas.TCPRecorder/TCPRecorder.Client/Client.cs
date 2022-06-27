@@ -1,5 +1,5 @@
-﻿// <copyright file="Client.cs" company="Steven Morgan.">
-// Copyright (c) Steven Morgan.</copyright>
+﻿// <copyright file="Client.cs" company="McLaren Applied Ltd.">
+// Copyright (c) McLaren Applied Ltd.</copyright>
 
 using System;
 using System.IO;
@@ -10,7 +10,9 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+
 using NLog;
+
 using TCPRecorder.Client.Utilities;
 
 namespace TCPRecorder.Client
@@ -20,7 +22,7 @@ namespace TCPRecorder.Client
         private const ushort MessageProtocolVersion = 2;
         private static readonly Logger NLogLogger = LogManager.GetCurrentClassLogger();
         private readonly int sendBufferSize;
-        private readonly TcpClient tcpClient = new TcpClient();
+        private readonly TcpClient tcpClient = new();
         private NetworkStream stream;
 
         public Client(int sendBufferSize = 0)

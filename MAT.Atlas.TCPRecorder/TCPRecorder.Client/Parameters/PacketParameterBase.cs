@@ -1,13 +1,14 @@
-﻿// <copyright file="PacketParameterBase.cs" company="Steven Morgan.">
-// Copyright (c) Steven Morgan.</copyright>
+﻿// <copyright file="PacketParameterBase.cs" company="McLaren Applied Ltd.">
+// Copyright (c) McLaren Applied Ltd.</copyright>
 
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+
 using TCPRecorder.Client.Extensions;
 using TCPRecorder.Client.Packet;
 
-namespace TCPRecorder.Client
+namespace TCPRecorder.Client.Parameters
 {
     [DebuggerDisplay(
         nameof(Name) + " = {" + nameof(Name) + "}, " +

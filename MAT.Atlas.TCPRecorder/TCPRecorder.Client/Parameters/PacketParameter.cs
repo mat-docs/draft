@@ -1,11 +1,12 @@
-﻿// <copyright file="PacketParameter.cs" company="Steven Morgan.">
-// Copyright (c) Steven Morgan.</copyright>
+﻿// <copyright file="PacketParameter.cs" company="McLaren Applied Ltd.">
+// Copyright (c) McLaren Applied Ltd.</copyright>
 
 using System;
 using System.Collections.Generic;
+
 using TCPRecorder.Client.Packet;
 
-namespace TCPRecorder.Client
+namespace TCPRecorder.Client.Parameters
 {
     public sealed class PacketParameter : PacketParameterBase<DefaultPacketData>
     {

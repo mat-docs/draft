@@ -1,5 +1,5 @@
-﻿// <copyright file="NanoSeconds.cs" company="Steven Morgan.">
-// Copyright (c) Steven Morgan.</copyright>
+﻿// <copyright file="NanoSeconds.cs" company="McLaren Applied Ltd.">
+// Copyright (c) McLaren Applied Ltd.</copyright>
 
 using System;
 using System.Runtime.CompilerServices;

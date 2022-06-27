@@ -1,5 +1,5 @@
-﻿// <copyright file="DefaultPacketData.cs" company="Steven Morgan.">
-// Copyright (c) Steven Morgan.</copyright>
+﻿// <copyright file="DefaultPacketData.cs" company="McLaren Applied Ltd.">
+// Copyright (c) McLaren Applied Ltd.</copyright>
 
 namespace TCPRecorder.Client.Packet
 {

@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Windows.Forms;
+
 using MAT.Atlas.Automation.Client.Services;
 
 namespace LoadSSN
 {
-    public partial class Form1 : Form
+    public partial class Form : System.Windows.Forms.Form
     {
-        public Form1()
+        public Form()
         {
             InitializeComponent();
         }

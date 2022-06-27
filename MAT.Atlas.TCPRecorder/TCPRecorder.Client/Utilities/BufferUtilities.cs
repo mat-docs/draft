@@ -1,5 +1,5 @@
-﻿// <copyright file="BufferUtilities.cs" company="Steven Morgan.">
-// Copyright (c) Steven Morgan.</copyright>
+﻿// <copyright file="BufferUtilities.cs" company="McLaren Applied Ltd.">
+// Copyright (c) McLaren Applied Ltd.</copyright>
 
 using System.Runtime.InteropServices;
 

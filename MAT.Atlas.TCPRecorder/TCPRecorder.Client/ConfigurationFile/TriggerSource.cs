@@ -1,4 +1,4 @@
-﻿// <copyright file="Signal.cs" company="McLaren Applied Ltd.">
+﻿// <copyright file="TriggerSource.cs" company="McLaren Applied Ltd.">
 // Copyright (c) McLaren Applied Ltd.</copyright>
 
 namespace TCPRecorder.Client.ConfigurationFile

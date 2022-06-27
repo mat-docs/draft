@@ -1,7 +1,5 @@
-﻿// <copyright file="ArrayExtensions.cs" company="Steven Morgan.">
-// Copyright (c) Steven Morgan.</copyright>
-
-using System;
+﻿// <copyright file="ArrayExtensions.cs" company="McLaren Applied Ltd.">
+// Copyright (c) McLaren Applied Ltd.</copyright>
 
 namespace TCPRecorder.Client.Extensions
 {
@@ -10,11 +8,6 @@ namespace TCPRecorder.Client.Extensions
         public static T[] CreateArray<T>(params T[] values)
         {
             return values;
-        }
-
-        public static TOutput[] CreateArray<TInput, TOutput>(Converter<TInput, TOutput> converter, params TInput[] values)
-        {
-            return Array.ConvertAll(values, converter);
         }
     }
 }

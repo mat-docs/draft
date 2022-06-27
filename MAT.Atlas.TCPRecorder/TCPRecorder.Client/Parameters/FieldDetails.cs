@@ -1,9 +1,9 @@
-﻿// <copyright file="FieldDetails.cs" company="Steven Morgan.">
-// Copyright (c) Steven Morgan.</copyright>
+﻿// <copyright file="FieldDetails.cs" company="McLaren Applied Ltd.">
+// Copyright (c) McLaren Applied Ltd.</copyright>
 
 using System;
 
-namespace TCPRecorder.Client
+namespace TCPRecorder.Client.Parameters
 {
     public abstract class FieldDetails
     {

@@ -1,12 +1,18 @@
-﻿using System;
+﻿// <copyright file="Program.cs" company="McLaren Applied Ltd.">
+// Copyright (c) McLaren Applied Ltd.</copyright>
+
+using System;
 using System.Net;
 using System.Threading;
 using System.Threading.Tasks;
+
 using NLog;
+
 using TCPRecorder.Client;
 using TCPRecorder.Client.ConfigurationFile;
 using TCPRecorder.Client.Extensions;
 using TCPRecorder.Client.Packet;
+using TCPRecorder.Client.Parameters;
 using TCPRecorder.Client.Utilities;
 
 namespace Sample
@@ -14,21 +20,6 @@ namespace Sample
     class Program
     {
         private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
-
-        static void Main()
-        {
-            using var cts = new CancellationTokenSource();
-
-            Do(cts);
-
-            Console.WriteLine("Press any key to exit.");
-            Console.ReadKey(true);
-
-            if (!cts.IsCancellationRequested)
-            {
-                cts.Cancel();
-            }
-        }
 
         private static async void Do(CancellationTokenSource cts)
         {
@@ -61,7 +52,7 @@ namespace Sample
             const string applicationGroupName = "SampleParameters"; // Top-level application name (group parameters are added too)
             const double frequencyInHz = 100;
 
-            // Parameters
+            // Parameters (the packet data must match with no padding)
             var sineWaveParameter = new PacketParameter("SineWave", "Sample Sine Wave", PacketFieldType.Double, (-100, 100), format: "%.3f");
             var cosineWaveParameter = new PacketParameter("CosineWave", "Sample Cosine Wave", PacketFieldType.Double, (-100, 100), format: "%.3f");
             var tanWaveParameter = new PacketParameter("TanWave", "Sample Tan Wave", PacketFieldType.Double, (-100, 100), format: "%.3f");
@@ -118,12 +109,12 @@ namespace Sample
                     // Set parameter values at the appropriate offsets within the buffer
                     // The buffer is laid out in the order specified in the configuration
                     // The buffer contents can be set however is appropriate, just using simple helpers here
-                    sineWaveParameter.SetTargetValue(buffer, Math.Sin(angleInRads) * 100);
-                    cosineWaveParameter.SetTargetValue(buffer, Math.Cos(angleInRads) * 100);
-                    tanWaveParameter.SetTargetValue(buffer, Math.Tan(angleInRads) * 100);
+                    sineWaveParameter.SetValue(buffer, Math.Sin(angleInRads) * 100);
+                    cosineWaveParameter.SetValue(buffer, Math.Cos(angleInRads) * 100);
+                    tanWaveParameter.SetValue(buffer, Math.Tan(angleInRads) * 100);
                     angleInRads += angleIntervalInRads;
 
-                    randomParameter.SetTargetValue(buffer, random.NextDouble());
+                    randomParameter.SetValue(buffer, random.NextDouble());
 
                     // Send updated data packet
                     await client.SendData(nextDataTimeInS, token, buffer).ConfigureAwait(false);
@@ -153,17 +144,32 @@ namespace Sample
             params PacketParameter[] packetParameters)
         {
             if (!PacketConfiguration.GenerateConfiguration(
-                ref configurationIdentifier,
-                configurationVersion,
-                applicationGroupName,
-                packetParameters,
-                out var packetSize,
-                frequencyInHz))
+                    ref configurationIdentifier,
+                    configurationVersion,
+                    applicationGroupName,
+                    packetParameters,
+                    out var packetSize,
+                    frequencyInHz))
             {
                 throw new InvalidOperationException("Generate Configuration failed!");
             }
 
             return packetSize;
+        }
+
+        static void Main()
+        {
+            using var cts = new CancellationTokenSource();
+
+            Do(cts);
+
+            Console.WriteLine("Press any key to exit.");
+            Console.ReadKey(true);
+
+            if (!cts.IsCancellationRequested)
+            {
+                cts.Cancel();
+            }
         }
     }
 }
